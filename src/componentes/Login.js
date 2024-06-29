@@ -33,10 +33,10 @@ const Login = () => {
 
   return (
     <Container>
-      <Typography variant="h4" gutterBottom>Login</Typography>
+      <Typography variant="h4" gutterBottom>Iniciar Sesión</Typography>
       <form onSubmit={handleSubmit}>
         <TextField
-          label="Username"
+          label="Email"
           name="username"
           value={formData.username}
           onChange={handleChange}
@@ -44,7 +44,7 @@ const Login = () => {
           margin="normal"
         />
         <TextField
-          label="Password"
+          label="Contraseña"
           name="password"
           type="password"
           value={formData.password}
@@ -63,7 +63,7 @@ const Login = () => {
         autoHideDuration={6000}
         onClose={handleClose}
         message="Sesión iniciada"
-        sx={{ width: '50%', fontSize: '20px' }} // Tamaño y estilo personalizado
+        sx={{ width: '50%', fontSize: '20px' }} 
       />
     </Container>
   );

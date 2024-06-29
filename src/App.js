@@ -8,12 +8,13 @@ import About from './componentes/About';
 import Contact from './componentes/Contact';
 import Footer from './componentes/Footer';
 import Home from './componentes/Home';
-import SensorGraph from './componentes/SensorGraph';  // Importar SensorGraph
-import Historial from './componentes/Historial'; 
+
 import Weather from './componentes/Weather';
 import WeatherMap from './componentes/WeatherMap'
 import Register from './componentes/Register';
 import Login from './componentes/Login';
+import AddCrop from './componentes/AddCrop';
+import CropList from './componentes/CropList';
 
 import './App.css';
 
@@ -29,8 +30,9 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/sensor-graph" element={<SensorGraph />} />  {/* Ruta para SensorGraph */}
-            <Route path="/historial" element={<Historial />} />  {/* Ruta para Historial */}
+            <Route path="/add-crop" element={<AddCrop />} />
+            <Route path="/crops" element={<CropList />} />
+          
             <Route path="/weather" element={<Weather />} />
             <Route path="/weather-map" element={<WeatherMap />} /> {/* Nueva ruta */}
             <Route path="/login" element={<Login />} />

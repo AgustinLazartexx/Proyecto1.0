@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Container, TextField, Button, Typography } from '@mui/material';
+import { Container, TextField, Button, Typography , Alert } from '@mui/material';
 
 const Register = () => {
   const [formData, setFormData] = useState({ username: '', password: '' });
@@ -25,10 +25,10 @@ const Register = () => {
 
   return (
     <Container>
-      <Typography variant="h4" gutterBottom>Register</Typography>
+      <Typography variant="h4" gutterBottom>Registrarse</Typography>
       <form onSubmit={handleSubmit}>
         <TextField
-          label="Username"
+          label="Email"
           name="username"
           value={formData.username}
           onChange={handleChange}
@@ -36,7 +36,7 @@ const Register = () => {
           margin="normal"
         />
         <TextField
-          label="Password"
+          label="Contraseña"
           name="password"
           type="password"
           value={formData.password}
@@ -44,9 +44,11 @@ const Register = () => {
           fullWidth
           margin="normal"
         />
-        <Button type="submit" variant="contained" color="primary">Register</Button>
+        <Button type="submit" variant="contained" color="primary">Registrar</Button>
       </form>
-      {isRegistered && <Typography variant="body1" color="success">Usuario registrado con éxito</Typography>}
+      {isRegistered &&   <Alert  severity="success" sx={{ width: '100%' }}>
+          Registrado exitosamente!
+        </Alert>}
     </Container>
   );
 };

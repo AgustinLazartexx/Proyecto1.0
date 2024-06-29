@@ -1,23 +1,82 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AppBar, Toolbar, Button, Typography, Box } from '@mui/material';
+import { AppBar, Toolbar, Button, Box, Menu, MenuItem } from '@mui/material';
 
 const NavBar = () => {
+  const [anchorElCultivos, setAnchorElCultivos] = useState(null);
+  const [anchorElMonitoreo, setAnchorElMonitoreo] = useState(null);
+
+  const handleCultivosMenuOpen = (event) => {
+    setAnchorElCultivos(event.currentTarget);
+  };
+
+  const handleCultivosMenuClose = () => {
+    setAnchorElCultivos(null);
+  };
+
+  const handleMonitoreoMenuOpen = (event) => {
+    setAnchorElMonitoreo(event.currentTarget);
+  };
+
+  const handleMonitoreoMenuClose = () => {
+    setAnchorElMonitoreo(null);
+  };
+
   return (
-    <AppBar position="static">
-      <Toolbar>
-        <Typography variant="h6" style={{ flexGrow: 1 }}>
-          Agricultura Inteligente
-        </Typography>
-        <Box display="flex" alignItems="center">
-          <Button color="inherit" component={Link} to="/">Inicio</Button>
-          <Button color="inherit" component={Link} to="/dashboard">Dashboard</Button>
-          
-          <Button color="inherit" component={Link} to="/contact">Contactos</Button>
+    <AppBar position="static" sx={{ backgroundColor: '#f8f8f8', boxShadow: 'none', borderBottom: 1, borderColor: 'divider' }}>
+      <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', padding: '0 20px' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Button sx={{ color: 'black', mx: 1 }} component={Link} to="/">Inicio</Button>
+          <Button sx={{ color: 'black', mx: 1 }} component={Link} to="/about">Sobre Nosotros</Button>
+          <Button
+            sx={{ color: 'black', mx: 1 }}
+            onClick={handleMonitoreoMenuOpen}
+            aria-controls="monitoreo-menu"
+            aria-haspopup="true"
+          >
+            Monitoreo
+          </Button>
+          <Menu
+            id="monitoreo-menu"
+            anchorEl={anchorElMonitoreo}
+            keepMounted
+            open={Boolean(anchorElMonitoreo)}
+            onClose={handleMonitoreoMenuClose}
+          >
+            <MenuItem component={Link} to="/dashboard" onClick={handleMonitoreoMenuClose}>
+              Control Temperatura
+            </MenuItem>
+          </Menu>
+          <Button
+            sx={{ color: 'black', mx: 1 }}
+            onClick={handleCultivosMenuOpen}
+            aria-controls="cultivos-menu"
+            aria-haspopup="true"
+          >
+            Gestión de Cultivos
+          </Button>
+          <Menu
+            id="cultivos-menu"
+            anchorEl={anchorElCultivos}
+            keepMounted
+            open={Boolean(anchorElCultivos)}
+            onClose={handleCultivosMenuClose}
+          >
+            <MenuItem component={Link} to="/add-crop" onClick={handleCultivosMenuClose}>
+              Agregar Cultivo
+            </MenuItem>
+            <MenuItem component={Link} to="/crops" onClick={handleCultivosMenuClose}>
+              Lista de Cultivos
+            </MenuItem>
+          </Menu>
         </Box>
-        <Box display="flex" alignItems="center" justifyContent="center">
-          <Button color="primary" variant="contained" component={Link} to="/login" style={{ margin: '0 10px' }}>iniciar sesion</Button>
-          <Button color="primary" variant="contained" component={Link} to="/register">Registrarse</Button>
+        <Box display="flex" alignItems="center">
+          <Button color="primary" variant="contained" component={Link} to="/login" sx={{ mx: 1 }}>
+            Iniciar Sesión
+          </Button>
+          <Button color="primary" variant="contained" component={Link} to="/register" sx={{ mx: 1 }}>
+            Registrarse
+          </Button>
         </Box>
       </Toolbar>
     </AppBar>
